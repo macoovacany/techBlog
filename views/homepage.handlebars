@@ -6,10 +6,12 @@
       {{{get_emoji}}}
       <a href="/blog/{{blog.id}}">{{blog.description}}</a>
     </h2>
+    {{format_date blog.date_created}}<br>
+    {{blog.user.name}}
   </div>
   <div class="col-md-7">
     <p>
-      {{blog.content}}
+      {{{intro_text blog.content}}}
     </p>
   </div>
 </div>

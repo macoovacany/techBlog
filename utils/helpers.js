@@ -19,4 +19,11 @@ module.exports = {
       return `<span for="img" aria-label="gear">⚙️</span>`;
     }
   },
+
+  intro_text: (str) => {
+    const n = 200
+    const retStr = str.substr(0, n + str.substr(n,).indexOf(' '));
+    return `${retStr} ...`;
+  }
+
 };

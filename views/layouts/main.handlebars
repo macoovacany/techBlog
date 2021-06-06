@@ -16,7 +16,7 @@
         <span role="img" aria-label="money">💸</span>
         <a href="/">Tech Blog!</a>
       </h1>
-      <nav>
+
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/profile">profile</a> |
@@ -25,9 +25,9 @@
         <a href="/login">login</a>
         {{/if}}
       </nav>
+
     </header>
     <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
       {{{ body }}}
     </main>
     <footer>
