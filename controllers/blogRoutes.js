@@ -5,9 +5,11 @@ const withAuth = require('../utils/auth');
 
 // techBlog/blog/:id
 router.get('/:id', withAuth, async (req, res) => {
-  // router.get('/:id',  async (req, res) => {
+
+  const blogID = req.params.id;
   try {
-    const blogData = await Blog.findByPk(req.params.id, {
+    // grab the blog data 
+    const blogData = await Blog.findByPk(blogID, {
       include: [
         {
           model: User,
@@ -15,8 +17,25 @@ router.get('/:id', withAuth, async (req, res) => {
         },
       ],
     });
-
-    const blog = blogData.get({ plain: true });
+    
+    const commentsData = await Comment.findAll(
+      {
+        where: {
+          blog_id: blogID
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+          },
+        ],
+        
+      }
+      );
+      
+      const blog = {...blogData.get({ plain: true }),
+      comments: commentsData.map(c => c.get({ plain: true }))
+    };
 
     res.render('blog', {
       blog,

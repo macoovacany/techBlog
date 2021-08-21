@@ -9,7 +9,7 @@
         {{blog.user.name}}
         <span></span>
         {{format_date blog.date_created}}
-        </h5>
+      </h5>
     </div>
   </div>
   <div class="col-md-7">
@@ -18,8 +18,24 @@
     </p>
   </div>
   <hr />
+
+  {{#each blog.comments as |comment| }}
+<div class="row mb-4 blog">
+  <div class="col-md-5">
+    {{format_date comment.date_created}}<br>
+    {{comment.user.name}}
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{comment.content}}
+    </p>
+  </div>
+</div>
+  {{/each}}
+
+  <hr />
   <div class="col-md-6">
-    <form class="form new-comment-form">
+    <form class="form add-comment-form">
       <div class="form-group">
         <label for="comment">Leave a Comment</label>
         <textarea class="form-input" id="comment" name="comment"></textarea>
@@ -30,3 +46,5 @@
     </form>
   </div>
 </div>
+
+<script src="/js/comment.js"></script>
