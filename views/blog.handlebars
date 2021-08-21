@@ -1,12 +1,32 @@
-<div class="col-md-5">
-  <h2>
-    {{{get_emoji}}}
-    <a href="/blog/{{blog.id}}">{{blog.description}}</a>
-  </h2>
-</div>
-<div class="col-md-7">
-  <p>
-    {{blog.content}}
-  </p>
-</div>
+<div>
+  <div class="col-md-5">
+    <h2>
+      {{{get_emoji}}}
+      <a href="/blog/{{blog.id}}">{{blog.description}}</a>
+    </h2>
+    <div class="flex-column justify-space-around">
+      <h5 class="display-flex justify-space-between align-center p-2">
+        {{blog.user.name}}
+        <span></span>
+        {{format_date blog.date_created}}
+        </h5>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{blog.content}}
+    </p>
+  </div>
+  <hr />
+  <div class="col-md-6">
+    <form class="form new-comment-form">
+      <div class="form-group">
+        <label for="comment">Leave a Comment</label>
+        <textarea class="form-input" id="comment" name="comment"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
 </div>
