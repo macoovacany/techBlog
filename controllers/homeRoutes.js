@@ -28,18 +28,41 @@ router.get('/', async (req, res) => {
 
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
+
+  const userId = req.session.user_id;
   try {
     // Find the logged in user based on the session ID
 
-    const userData = await User.findByPk(req.session.user_id, {
+    const userData = await User.findByPk(userId, {
       attributes: { exclude: ['password'] },
       include: [{ model: Blog }],
     });
     
     const user = userData.get({ plain: true });
 
+    const blogData = await Blog.findAll({
+      where: [
+        {
+          user_id: userId
+        },
+      ],
+    });
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+
+    blogform = {
+      id: '',
+      action:'add',
+      title:' Create a New blog:',
+      buttonText: 'Create',
+      name:'',
+      content: ''
+
+    }
+
     res.render('profile', {
       user,
+      blogs,
+      blogform,
       logged_in: true
     });
   } catch (err) {

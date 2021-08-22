@@ -1,0 +1,23 @@
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>{{blogform.longaction}}</h3>
+
+    <form class="form {{blogform.type}} {{blogform.id}}">
+      <div class="form-group">
+        <label for="blog-name">Blog Name:</label>
+        <input class="form-input" type="text" id="blog-name" name="blog-name" value="{{blogform.name}}"/>
+      </div>
+      <div class="form-group">
+        <label for="blog-content">Blog Content:</label>
+        <textarea class="form-input" id="blog-content" name="blog-content" value="{{blogform.content}}></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">{{blogform.action}}</button>
+      </div>
+    </form>
+  </div>
+
+
+  
+  
+    

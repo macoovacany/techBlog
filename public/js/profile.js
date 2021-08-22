@@ -1,47 +1,63 @@
-const newFormHandler = async (event) => {
+const handleBlogForm = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+  // data from form
+  const blogName = document.querySelector('#blog-name').value.trim()
+  const blogContent = document.querySelector('#blog-content').value.trim();
+  const blogID = "";
 
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
+  if (blogName && blogContent) {
+    // send to the back end
+    const payload = {
+      name: blogName,
+      content: blogContent,
+    }
+    const response = await fetch('/api/blogs/', {
       method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' },
     });
 
+    // check if OK.
     if (response.ok) {
       document.location.replace('/profile');
     } else {
       alert('Failed to create project');
     }
   }
-};;
+};
 
 const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+  event.preventDefault();
 
-    const response = await fetch(`/api/blogs/${id}`, {
-      method: 'DELETE',
-    });
+  try {
+    if (event.target.hasAttribute('data-id')) {
 
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert('Failed to delete blog');
+      const id = event.target.getAttribute('data-id');
+      const response = await fetch(`/api/blogs/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        document.location.replace('/profile');
+      } else {
+        alert('Failed to delete blog');
+        document.location.replace('/profile');
+      }
     }
+  }
+  catch (err) {
+    console.log(err);
   }
 };
 
 document
-  .querySelector('.new-blog-form')
-  .addEventListener('submit', newFormHandler);
+  .querySelector('.blog-form')
+  .addEventListener('submit', handleBlogForm);
 
-document
-  .querySelector('.blog-list')
-  .addEventListener('click', delButtonHandler);
+if (document.querySelector('.delete-blog')) {
+  document
+    .querySelector('.delete-blog')
+    .addEventListener('click', delButtonHandler);
+};
+
