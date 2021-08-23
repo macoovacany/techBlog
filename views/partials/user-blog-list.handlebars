@@ -1,0 +1,23 @@
+{{#if blogs.length}}
+<hr />
+<div class="col-md-6 blog-list">
+  <form class="user-blog-list-form">
+    <h3>Current blogs:</h3>
+
+    {{#each blogs as |blog|}}
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <p><a href="/blog/{{blog.id}}"> {{blog.name}}
+          </a></p>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-sm btn-link edit-blog" data-action="edit" data-id="{{blog.id}}">Edit</button>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-sm btn-danger delete-blog" data-action="delete" data-id="{{blog.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </form>
+</div>
+{{/if}}

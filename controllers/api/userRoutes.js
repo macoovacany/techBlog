@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
+      req.session.cookie.maxAge = parseFloat(process.env.SESSION_TIMEOUT)*1000*60;
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 

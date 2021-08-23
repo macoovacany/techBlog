@@ -5,26 +5,10 @@
 </div>
 
 <hr />
+
 {{> blog-form}}
 
-  {{#if blogs.length}}
-  <hr />
-  <div class="col-md-6 blog-list">
-    <h3>Current blogs:</h3>
-
-    {{#each blogs as |blog|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <p><a href="/blog/{{blog.id}}"> {{blog.name}}
-          </a></p>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger delete-blog" data-id="{{blog.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
+{{> user-blog-list}}
 </div>
 
 <script src="./js/profile.js"></script>
