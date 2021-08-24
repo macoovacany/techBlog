@@ -57,7 +57,7 @@ const handleDelete = async (id) => {
 
 const handleEdit = async (id) => {
 
-  const response = await fetch('/profile',
+  const response = await fetch(`/api/blogs/${id}`,
     {
       method: 'POST',
       headers: {
@@ -66,23 +66,21 @@ const handleEdit = async (id) => {
       body: JSON.stringify({ action: 'load', id: id }),
     }
   );
-  if (response.ok) {
-    document.location.replace('/profile');
-  } else {
-    alert('Action failed');
-    document.location.replace('/profile');
-  }
 
+  let { content, name } = await response.json();
+  document.querySelector('#blog-name').value = name;
+  document.querySelector('#blog-content').value = content;
+  document.querySelector('.blog-form-header').innerHTML = 'Edit existing blog';
 
 }
 
 
 const handleBlogList = async (event) => {
-  // skip through if going to blog
+  // skip through if going to blog using the anchors 
   if (event.target instanceof HTMLAnchorElement) {
     return
   }
-  
+
   event.preventDefault();
 
 

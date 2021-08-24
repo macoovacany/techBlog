@@ -2,6 +2,9 @@ const router = require('express').Router();
 const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// **************************************
+
+// **************************************
 router.post('/', withAuth, async (req, res) => {
   
   try {
@@ -16,6 +19,23 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// **************************************
+// get a single blog's data
+// **************************************
+router.post('/:id', withAuth, async (req, res) => {
+
+  try {
+  const blog = await Blog.findByPk(req.body.id);
+    res.status(200).json(blog);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+// **************************************
+//  delete a blog
+// **************************************
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blog.destroy({

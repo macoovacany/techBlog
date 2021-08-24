@@ -40,6 +40,14 @@ Features
 
 * adding comments to blogs
 
+
+## Screenshots
+
+![A user\'s dashboard](./doc/images/dashboard.png)
+
+
+![The homepage](./doc/images/homepage.png)
+
 ## License
 The MIT License
 

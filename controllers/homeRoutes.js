@@ -3,7 +3,6 @@ const { Blog, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 const blogForm = (action, blogData) => {
-  console.log(blogData)
   switch (action) {
     case 'edit':
       return {
@@ -59,8 +58,6 @@ router.get('/', async (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
 
   const userId = req.session.user_id;
-  console.log(req.body);
-
   try {
 
     const userData = await User.findByPk(userId, {
@@ -92,8 +89,6 @@ router.get('/profile', withAuth, async (req, res) => {
       default:
         blogform = blogForm('', {})  // default balnk values for new 'add new' blog form.
     }
-
-    // console.log(blogform);
 
     res.render('profile', {
       user,
