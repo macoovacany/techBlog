@@ -2,7 +2,9 @@
 # techBlog
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+----
 * [Example Deployed App](https://tech-blog-fsf.herokuapp.com/)
+----
 
 ## Description
 An example of a tech bogging platform to illustrate the MVC paradigm. This project is part of the boot camp programming curriculum. 
